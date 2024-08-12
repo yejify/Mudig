@@ -26,7 +26,7 @@ export default function AddModal({ videoId }: Props) {
   const navigate = useNavigate();
   const { data } = useMyPlayList();
   const { mutate: putMyPlayList } = usePutMyPlayList();
-  const [, setModalOpen] = useRecoilState(modalAtom);
+  const setModalOpen = useSetRecoilState(modalAtom);
   const setToast = useSetRecoilState(toastAtom);
   const dropdownRef = useRef(null);
   const [isDropdownOpen, setDropdownOpen] = useState(false);

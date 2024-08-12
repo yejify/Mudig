@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, useCallback } from 'react';
 import styled from 'styled-components';
 import VideoPlayer from '../../components/RandomMv/VideoPlayer';
 import VideoInfo from '../../components/RandomMv/VideoInfo';
@@ -19,7 +19,6 @@ export default function RandomMusic() {
   const [page, setPage] = useState(0);
   const targetRef = useRef<HTMLDivElement>(null);
   const [allVideos, setAllVideos] = useState<IVideoData[]>([]);
-  const [, setIsEnd] = useState(false);
 
   const handleAddButtonClick = (videoId: string) => {
     // console.log(`선택된 뮤비 ${videoId}`);
@@ -27,13 +26,11 @@ export default function RandomMusic() {
     setModalOpen(true);
   };
 
-  const fetchRandomMv = async () => {
+  const fetchRandomMv = useCallback(async () => {
     const data = { selectId, page };
     getRandomMv(data, {
       onSuccess: (newVideoData: IVideoData[]) => {
-        console.log(data);
         if (newVideoData.length === 0) {
-          setIsEnd(true);
           return;
         }
         const dataId = newVideoData.map((video) => video.id);
@@ -45,7 +42,7 @@ export default function RandomMusic() {
         console.error('랜덤뮤비 불러오기 실패', error);
       },
     });
-  };
+  }, [selectId, page, getRandomMv]);
 
   useEffect(() => {
     const observerCallback = async ([entry]: IntersectionObserverEntry[]) => {
@@ -70,7 +67,7 @@ export default function RandomMusic() {
     return () => {
       observer.disconnect();
     };
-  }, [page, id]);
+  }, [page, id, fetchRandomMv]);
 
   return (
     <>
