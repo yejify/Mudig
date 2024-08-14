@@ -8,7 +8,6 @@ interface IRandomMv {
 export const useRandomMv = () => {
   const getRandomMv = async (data: IRandomMv) => {
     const { selectId, page } = data;
-    // console.log(selectId);
     const response = await privateInstance.post(
       `/playlist/random-mv/?page=${page}`,
       {
