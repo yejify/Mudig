@@ -1,6 +1,6 @@
 # Mudig
 
-[🎵 Mudig 이용하러 가기](https://www.mudig.co.kr/)
+### Karlo 서비스가 종료되어 현재 앱을 서비스하지 않고 있습니다😢
 
 [🔗 Mudig 개발일지 Notion](https://www.notion.so/Mudig-4de021314fe54804a03d291908f3d508#0b69053285244feebfb6a7a9e4543be2)
 
